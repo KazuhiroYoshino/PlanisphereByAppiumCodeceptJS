@@ -11,8 +11,44 @@ module.exports = function() {
     let dateTo;
 
   return actor({
+        clickPlan: function(plan){
+            var selector;
+            switch (plan){
+            case 'お得な特典付きプラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=0'}));
+                break;
+            case '素泊まり':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=4'}));
+                break;
+            case '出張ビジネスプラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=5'}));
+                break;
+            case 'エステ・マッサージプラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=6'}));
+                break;
+            case '貸し切り露天風呂プラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=7'}));
+                break;
+            case 'カップル限定プラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=8'}));
+                break;
+            case 'テーマパーク優待プラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=9'}));
+                break;
+            case 'プレミアムプラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=1'}));
+                break;
+            case 'ディナー付きプラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=2'}));
+                break;
+            case 'お得なプラン':
+                this.click(locate('a').withAttr({href: './reserve.html?plan-id=3'}));
+                break;
+            default:
+            }
+        },
         fromDay: function(startDay){
-        var selector = "#datePick";
+        var selector = "#date";
         var dateFrom;
         	switch (startDay) {
         	case 'Sunday':
@@ -85,6 +121,16 @@ module.exports = function() {
         checkBirthday: function(birthday){
             var birthdayString = birthday.substr(0, 4) + '年' + birthday.substr(5, 2) + '月' + birthday.substr(8, 2) + '日';
             this.see(birthdayString);
+        },
+
+        seeBill: function(bill, selector){
+            var ret;
+
+            var billString = this.grabTextFrom(selector);
+            billString = billString.replace('円', '');
+            billString = billString.replace('（税込み）', '');
+            billString = billString.replace('合計', '');
+            ret = assert.equal(bill, billString);
         }
   });
 }
