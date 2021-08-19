@@ -20,11 +20,11 @@ Data(reserveTestTable).Scenario('Guest予約_部屋タイプ確認_料金確認_
     I.waitForClickable('#navbarNav > ul > li:nth-child(3) > a');
     I.click('宿泊予約');
     I.clickPlan(current.宿泊プラン);
+    I.click('閉じる');
     I.switchToNextTab(1);
     I.fromDay(current.宿泊初日);
     I.fillField('term', current.連泊数);
     I.fillField('head-count', current.宿泊人数);
-    I.click('#username');
     if(current.朝食 == 'on'){
         I.checkOption('#breakfast');
     }

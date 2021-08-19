@@ -77,7 +77,9 @@ Data(reserveTestTable).Scenario('会員登録_ログイン_Planメニュー確�
     I.fillField('password', current.パスワード);
     I.click('#login-button');
 //    I.waitUrlEquals('https://hotel.testplanisphere.dev/ja/mypage.html');
-    let url = await I.grabSource();
+//    let url = await I.grabSource();
+//    I.waitForInvisible('#email');
+    let title = await I.grabTitle();
 
     I.see(current.メルアド);
     I.see(current.氏名);

@@ -22,6 +22,7 @@ Data(reserveTestTable).Scenario('Guest予約_部屋タイプ確認_料金確認_
     I.clickPlan(current.宿泊プラン);
     I.switchToNextTab(1);
     I.fromDay(current.宿泊初日);
+    I.click('閉じる');
     I.fillField('term', current.連泊数);
     I.fillField('head-count', current.宿泊人数);
     if(current.朝食 == 'on'){
