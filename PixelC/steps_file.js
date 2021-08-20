@@ -123,14 +123,14 @@ module.exports = function() {
             this.see(birthdayString);
         },
 
-        seeBill: function(bill, selector){
+        seeBill: function(bill, billString){
             var ret;
-
-            var billString = this.grabTextFrom(selector);
+            billString = billString.replace(',', '');
             billString = billString.replace('円', '');
             billString = billString.replace('（税込み）', '');
             billString = billString.replace('合計', '');
-            ret = assert.equal(bill, billString);
+            billString = billString.trim();
+            this.assertEqual(bill, billString);
         }
   });
 }

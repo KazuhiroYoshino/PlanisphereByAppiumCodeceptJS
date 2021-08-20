@@ -120,14 +120,19 @@ Data(reserveTestTable).Scenario('Member予約_部屋タイプ確認_料金確認
     }else{
         I.see(current.部屋タイプ);
     }
-    I.seeBill(current.合計金額, '#total-bill');
+//    I.see(current.合計金額);
+    let totalBill = await I.grabTextFrom('#total-bill');
+    I.seeBill(current.合計料金, totalBill);
 
     let term = await I.grabValueFrom('#term');
     let headcount = await I.grabValueFrom('#head-count');
     I.click('予約内容を確認する');
 //確認画面
     I.see(current.宿泊プラン);
-    I.seeBill(current.合計料金, '#total-bill');
+//    I.see(current.合計金額);
+    totalBill = await I.grabTextFrom('#total-bill');
+    I.seeBill(current.合計料金, totalBill);
+
     I.seeTerm(term);
     I.seeHeadCount(headcount);
     if(current.朝食 == 'on'){

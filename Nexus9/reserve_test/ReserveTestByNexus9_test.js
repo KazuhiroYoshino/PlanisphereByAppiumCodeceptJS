@@ -76,11 +76,12 @@ Data(reserveTestTable).Scenario('会員登録_ログイン_Planメニュー確�
     I.click('ログイン');
     I.fillField('email', current.メルアド);
     I.fillField('password', current.パスワード);
+    I.waitForClickable('#login-button');
     I.click('#login-button');
 //    I.waitUrlEquals('https://hotel.testplanisphere.dev/ja/mypage.html');
 //    let url = await I.grabSource();
 //    I.waitForInvisible('#email');
-    let title = await I.grabTitle();
+//    let title = await I.grabTitle();
 
     I.see(current.メルアド);
     I.see(current.氏名);

@@ -16,7 +16,10 @@ exports.config = {
             udid: 'emulator-5566',
             browserName: 'Chrome'
       }
-    }
+    },
+         "ChaiWrapper" : {
+                "require": "codeceptjs-chai"
+              }
   },
   include: {
     I: './steps_file.js'

@@ -22,9 +22,9 @@ Data(reserveTestTable).Scenario('Guest予約_部屋タイプ確認_料金確認_
     I.clickPlan(current.宿泊プラン);
     I.switchToNextTab(1);
     I.fromDay(current.宿泊初日);
+    I.click('閉じる');
     I.fillField('term', current.連泊数);
     I.fillField('head-count', current.宿泊人数);
-    I.click('#username');
     if(current.朝食 == 'on'){
 //        I.scrollTo('#breakfast');
         I.checkOption('#breakfast');
@@ -53,13 +53,18 @@ Data(reserveTestTable).Scenario('Guest予約_部屋タイプ確認_料金確認_
     }else{
         I.see(current.部屋タイプ);
     }
-    I.seeBill(current.合計金額, '#total-bill');
+//    I.see(current.合計金額);
+    let totalBill = await I.grabTextFrom('#total-bill');
+    I.seeBill(current.合計料金, totalBill);
 
     let term = await I.grabValueFrom('#term');
     let headcount = await I.grabValueFrom('#head-count');
     I.click('予約内容を確認する');
 //確認画面
-    I.seeBill(current.合計料金, '#total-bill');
+//    I.see(current.合計金額);
+    totalBill = await I.grabTextFrom('#total-bill');
+    I.seeBill(current.合計料金, totalBill);
+
     I.seeTerm(term);
     I.seeHeadCount(headcount);
     if(current.朝食 == 'on'){
